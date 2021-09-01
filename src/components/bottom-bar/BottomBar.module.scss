@@ -1,0 +1,34 @@
+.bottomBar {
+  position: absolute;
+  left: 1px;
+  bottom: 1px;
+  display: flex;
+  font-size: 10px;
+  padding-left: 3px;
+  padding-right: 3px;
+  color: #666666;
+  background-color: #b1bfcb30; // #b1bfcb, #3e5875
+  overflow: hidden;
+  opacity: 0.7;
+  &:hover {
+    opacity: 1;
+  }
+  :global(.main) {
+    :global(.message) {
+      display: inline-block;
+      cursor: pointer;
+      i {
+        margin-right: 3px;
+      }
+    }
+    :global(.separator) {
+      margin-left: 3px;
+      margin-right: 3px;
+      color: #3e5875;
+    }
+    :global(.el-popover__reference-wrapper) {
+      display: inline-block;
+      cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,67 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 2522399 */
+  src: url('iconfont.woff2?t=1620285948639') format('woff2'),
+       url('iconfont.woff?t=1620285948639') format('woff'),
+       url('iconfont.ttf?t=1620285948639') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-clip-plane:before {
+  content: "\e683";
+}
+
+.icon-clip-box:before {
+  content: "\e6a2";
+}
+
+.icon-firstview-filled:before {
+  content: "\e6c0";
+}
+
+.icon-measure-area:before {
+  content: "\e6c1";
+}
+
+.icon-measure-filled:before {
+  content: "\e6c4";
+}
+
+.icon-measure-angle:before {
+  content: "\e6c6";
+}
+
+.icon-measure-distance:before {
+  content: "\e6ca";
+}
+
+.icon-weathercontrol-filled:before {
+  content: "\e6cb";
+}
+
+.icon-configuration:before {
+  content: "\e6cc";
+}
+
+.icon-clouddownload-filled:before {
+  content: "\e71f";
+}
+
+.icon-cloudupload-filled:before {
+  content: "\e721";
+}
+
+.icon-phase-review:before {
+  content: "\e786";
+}
+
+.icon-data-spaceplanning:before {
+  content: "\e791";
+}
+

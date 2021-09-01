@@ -1,0 +1,100 @@
+@charset "utf-8";
+* {
+  box-sizing: border-box;
+}
+html {
+  background-color: #fff;
+  color: #000;
+  font-size: 16px;
+}
+blockquote, body, button, dd, dl, figure, form, h1, h2, h3, h4, h5, h6, input, legend, ol, p, pre, td, textarea, th, ul, xmp {
+  margin: 0;
+  padding: 0;
+}
+body, button, code, input, kbd, pre, samp, select, textarea, tt, xmp {
+  line-height: 1.5;
+}
+big, button, h1, h2, h3, h4, h5, h6, input, select, small, textarea {
+  font-size: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: tahoma, arial, "Hiragino Sans GB", "微软雅黑", simsun, sans-serif;
+}
+b, h1, h2, h3, h4, h5, h6, strong {
+  font-weight: 400;
+}
+address, cite, dfn, em, i, optgroup, var {
+  font-style: normal;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  text-align: left;
+}
+caption, th {
+  text-align: inherit;
+}
+menu, ol, ul {
+  list-style: none;
+}
+img {
+  border: 0;
+}
+button, img, input, object, select, textarea {
+  vertical-align: middle;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+audio, canvas, video {
+  display: inline-block;
+}
+blockquote:after, blockquote:before, q:after, q:before {
+  content: "\0020";
+}
+textarea {
+  overflow: auto;
+  resize: vertical;
+}
+a, button, input, select, textarea {
+  border: none;
+  outline: 0 none;
+}
+button::-moz-focus-inner, input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+mark {
+  background-color: transparent;
+}
+a, del, ins, s, u {
+  text-decoration: none;
+}
+sub, sup {
+  vertical-align: baseline;
+}
+html {
+  height: 100%;
+  overflow-x: hidden;
+}
+body {
+  color: #333;
+  font-family: Arial, "Microsoft Yahei", "Helvetica Neue", Helvetica, sans-serif;
+  line-height: 1;
+}
+a {
+  color: #25a4bb;
+  text-decoration: none;
+}
+::-webkit-scrollbar {
+  height: 1px;
+  width: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, .1);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #ededed;
+  border-radius: 4px;
+}

@@ -1,0 +1,36 @@
+.projects {
+  margin: 0px;
+  .cardsWrapper {
+    width: 100%;
+    .card {
+      width: 20%;
+      @media only screen and (max-width: 512px) {
+        width: 100%;
+      }
+      @media (min-width: 512px) and (max-width: 768px) {
+        width: 50%;
+      }
+      @media (min-width: 768px) and (max-width: 960px) {
+        width: 33.3%;
+      }
+      display: inline-block;
+    }
+  }
+}
+.createDialog {
+  :global(.el-dialog) {
+    @media only screen and (max-width: 512px) {
+      width: 100%;
+    }
+    @media (min-width: 512px) and (max-width: 768px) {
+      width: 80%;
+    }
+    @media (min-width: 768px) and (max-width: 960px) {
+      width: 50%;
+    }
+  }
+  :global(.el-dialog__body) {
+    display: flex;
+    justify-content: center;
+  }
+}

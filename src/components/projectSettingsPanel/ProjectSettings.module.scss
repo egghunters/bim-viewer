@@ -1,0 +1,30 @@
+.psetting {
+    .sliderWrap {
+        // padding: 0 20px 0 70px;
+        display: flex;
+        align-items: center;
+        :global(.demonstration) {
+            flex: 0 0 50px;
+        }
+        :global(.el-slider) {
+            flex: 1;
+            margin: 0 16px;
+        }
+    }
+    :global(.el-form-item__label) {
+        text-align: left;
+    }
+    .btnWrap {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+}
+.pSettingDialog {
+    :global(.el-dialog) {
+        border-radius: 10px;
+    }
+    :global(.el-dialog__body) {
+        padding-top: 0;
+        padding-bottom: 0;
+    }    
+}

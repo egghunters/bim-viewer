@@ -1,0 +1,46 @@
+.materialManager {
+  left: 1px;
+  top: 100px;
+  height: 400px;
+  width: 500px;
+  :global(.popup-body) {
+    overflow: auto;
+    flex: 1;
+    width: 100%;
+    :global(.object-info) {
+      width: 100%;
+      padding: 5px;
+      font-size: 10px;
+      opacity: 0.6;
+    }
+    :global(.el-table) {
+      width: 100%;
+      :global(.color-block) {
+        width: 16px;
+        height: 16px;
+        border: 1px dashed #000000;
+      }
+    }
+    :global(.material-editor) {
+      width: 100%;
+      text-align: center;
+      margin-top: 10px;
+      :global(.setting-row) {
+        display: flex;
+        width: 100%;
+        padding-right: 20px;
+        line-height: 30px;
+        :global(.setting-cell) {
+          width: 50%;
+          margin: 0 5px;
+          text-align: left;
+        }
+      }
+      :global(.no-selection) {
+        text-align: center;
+        opacity: 0.6;
+        line-height: 60px;
+      }
+    }
+  }
+}

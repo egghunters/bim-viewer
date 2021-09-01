@@ -1,0 +1,9 @@
+.uploadForm {
+  :global(.upload-success) {
+    margin-left: 10px;
+  }
+  min-width: 400px;
+  .fileUpload {
+    margin-left: 120px;
+  }
+}

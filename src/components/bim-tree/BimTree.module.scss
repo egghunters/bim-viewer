@@ -1,0 +1,42 @@
+.bimTree {
+  left: 1px;
+  top: 100px;
+  height: 400px;
+  :global(.tree-wrapper) {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    :global(.el-input) {
+      padding: 2px;
+      background-color: #FFFFFF;
+    }
+    :global(.el-tree) {
+      padding: 5px;
+      :global(.custom-content) {
+        display: flex;
+        align-items: center;
+        width: calc(100% - 46px);
+        justify-content: space-between;
+        :global(.custom-label-wrapper) {
+          flex: 1;
+          overflow: hidden;
+          padding: 1px;
+          :global(.custom-label) {
+            white-space: nowrap;
+            display: inline-block;
+            transition: margin-left 2s, transform 2s;
+            -webkit-transition: margin-left 2s, -webkit-transform 2s;
+            &:global(.auto-scroll) {
+              margin-left: 100%;
+              transform: translateX(-100%);
+              -webkit-transform: translateX(-100%);
+            }
+          }
+        }
+        :global(.obj-dropdown) {
+          margin: 4px;
+        }
+      }
+    }
+  }
+}
