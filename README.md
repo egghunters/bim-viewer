@@ -23,7 +23,59 @@ npm run build
 npm run lint
 ```
 
-### TODOs
+## Features
+- Orthographic camera
+![ortho.gif](public/images/snapshots/ortho.gif)
+
+- Distance measurement
+![measure_dist.gif](public/images/snapshots/measure_dist.gif)
+
+- Area measurement
+![measure_area.gif](public/images/snapshots/measure_area.gif)
+
+- Angle measurement
+![measure_angle.gif](public/images/snapshots/measure_angle.gif)
+
+- Section plane
+![section_plane.gif](public/images/snapshots/section_plane.gif)
+
+- Section box
+![section_box.gif](public/images/snapshots/section_box.gif)
+
+- Component selection
+![select.gif](public/images/snapshots/select.gif)
+
+- Display outline
+![outline.gif](public/images/snapshots/outline.gif)
+
+- Transparent mode
+![transparent.gif](public/images/snapshots/transparent.gif)
+
+## Add your own projects
+You can add your own projects or models by editing [projects.json](public/config/projects.json). Add following to projects.json, and put your models under `public/projects/my_project` folder.
+```
+{
+    "id": "my_project",
+    "name": "my project",
+    "thumbnail": "projects/my_project/thumbnail.png",
+    "camera": {
+      "eye": [20, 10, 20],
+      "look": [0, 1, 0]
+    },
+    "models": [{
+      "name": "my_project",
+      "src": "projects/my_project/my_model.gltf",
+      "position": [0, 0, 0],
+      "rotation": [-90, 0, 0],
+      "scale": [1, 1, 1],
+      "instantiate": false,
+      "merge": false,
+      "edges": true
+    }]
+  }
+```
+
+## TODOs
 There are so many features to be implemented, many bugs to be fixed, as well as enhancements:
 - Annotation manager
 - Viewpoint manager
@@ -37,7 +89,5 @@ There are so many features to be implemented, many bugs to be fixed, as well as 
 - GIS data (OGC services, GIS files, etc.)
 - ...
 
-### `three.js`
-- `three.js` version: `v0.131.0`
-
-`End`
+## `three.js`
+- [three.js release](https://github.com/mrdoob/three.js/releases): `v0.131.0`
