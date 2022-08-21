@@ -24,7 +24,7 @@ export enum MessageId {
 export interface Message {
   messageId: string;
   time?: string; // time stamp
-  messageData?: object | BooleanMessageData;
+  messageData?: object | BooleanMessageData; // eslint-disable-line
 }
 
 /**

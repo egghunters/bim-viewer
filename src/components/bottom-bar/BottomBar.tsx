@@ -21,11 +21,11 @@ interface ObjectInfo {
 
 @Component
 export default class BottomBar extends Vue {
-  @Prop({ required: true }) viewer!: BottomBarProps["viewer"]
+  @Prop({ required: true }) viewer!: BottomBarProps["viewer"];
 
-  private readonly postmate = PostmateManager.instance()
-  private postmateHistories: History[] = []
-  private postmateHistoryString = ""
+  private readonly postmate = PostmateManager.instance();
+  private postmateHistories: History[] = [];
+  private postmateHistoryString = "";
 
   mounted() {
     // when viewer is assigned, watch ObitControls's 'change' event

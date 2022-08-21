@@ -9,14 +9,14 @@ export class SHPLoader {
   public async load(url: string, onLoad: (object: THREE.Object3D) => void, onProgress?: (event: ProgressEvent) => void, onError?: (event: ErrorEvent) => void) {
     this.updateProgress(onProgress, 0);
 
-    var xhr = new XMLHttpRequest();
+    const xhr = new XMLHttpRequest();
     xhr.responseType = "arraybuffer";
     xhr.onload = () => {
       this.updateProgress(onProgress, 50); // we actually don't know an exact progress, while write one here
       // console.log(xhr.response)
       const parser = new SHPParser();
-      var parsedShp = parser.parse(xhr.response);
-      var model = new ShpThree().createModel(parsedShp);
+      const parsedShp = parser.parse(xhr.response);
+      const model = new ShpThree().createModel(parsedShp);
       this.updateProgress(onProgress, 99);
       onLoad(model);
     };

@@ -30,16 +30,16 @@ export enum EventStatus {
 
 @Component
 export default class Viewer3DContainer extends Vue {
-  @Prop({ required: true }) projectId!: Viewer3DContainerProps["projectId"]
+  @Prop({ required: true }) projectId!: Viewer3DContainerProps["projectId"];
 
-  selectedObjId = ""
-  viewer?: Viewer3D
-  axesViewport?: CoordinateAxesViewport
-  onLoading = false
-  loadingProgress = 0
-  loadingText = ""
-  projectSettings?:SettingsType
-  showProjectSettingPanel = false
+  selectedObjId = "";
+  viewer?: Viewer3D;
+  axesViewport?: CoordinateAxesViewport;
+  onLoading = false;
+  loadingProgress = 0;
+  loadingText = "";
+  projectSettings?:SettingsType;
+  showProjectSettingPanel = false;
 
   mounted() {
     this.initProjectSettings();

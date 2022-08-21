@@ -10,13 +10,13 @@ export interface ProjectCardProps {
 
 @Component
 export default class ProjectCard extends Vue {
-  @Prop({ required: true }) project!: ProjectCardProps["project"]
-  @Prop({ required: false }) click?: ProjectCardProps["click"]
+  @Prop({ required: true }) project!: ProjectCardProps["project"];
+  @Prop({ required: false }) click?: ProjectCardProps["click"];
 
   @Emit()
   delete(e: MouseEvent) { e.stopPropagation() }
 
-  readonly defaultThumbnail = "images/default-thumbnail.jpg"
+  readonly defaultThumbnail = "images/default-thumbnail.jpg";
 
   mounted() {
     const div = this.$refs.thumbnail as HTMLDivElement;
@@ -26,7 +26,7 @@ export default class ProjectCard extends Vue {
   }
 
   openProject(project: Project) {
-    return () => {
+    return (event: MouseEvent) => {
       console.log(`[PC] Routing to project: ${project.name}, id: ${project.id}`);
       this.$router.push(`/projects/${project.id}`);
     };
@@ -34,7 +34,7 @@ export default class ProjectCard extends Vue {
 
   protected render(): VNode {
     return (
-      <div ref="projectCard" class={styles.projectCard} onClick={this.click || this.openProject(this.project)}>
+      <div ref="projectCard" class={styles.projectCard} onClick={/* this.click || */ this.openProject(this.project)}>
         <div class={styles.card}>
           <div ref="thumbnail" class={styles.thumbnail}>
           </div>

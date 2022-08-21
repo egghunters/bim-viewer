@@ -7,13 +7,13 @@ import Viewer3D from "@/core/Viewer3D";
  * the same direction as host renderer's
  */
 export default class CoordinateAxesViewport {
-  hostRenderer?: Viewer3D
-  coordinateAxes?: CoordinateAxes
-  camera?: THREE.OrthographicCamera
-  scene?: THREE.Scene
-  renderer?: THREE.WebGLRenderer
-  height = 100 // size of render area
-  width = 100
+  hostRenderer?: Viewer3D;
+  coordinateAxes?: CoordinateAxes;
+  camera?: THREE.OrthographicCamera;
+  scene?: THREE.Scene;
+  renderer?: THREE.WebGLRenderer;
+  height = 100; // size of render area
+  width = 100;
 
   constructor(width?: number, height?: number) {
     this.width = width || this.width;

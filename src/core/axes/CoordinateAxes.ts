@@ -1,12 +1,12 @@
 import * as THREE from "three";
 
 export default class CoordinateAxes extends THREE.Object3D {
-  name = "COORDINATE_AXES"
-  private readonly AXIS_LENGTH = 1
+  name = "COORDINATE_AXES";
+  private readonly AXIS_LENGTH = 1;
   // follows right-hand coordinate system
-  private readonly AXIS_COLOR_X = 0xff0000 // red
-  private readonly AXIS_COLOR_Y = 0x00ff00 // green
-  private readonly AXIS_COLOR_Z = 0x0000ff // blue
+  private readonly AXIS_COLOR_X = 0xff0000; // red
+  private readonly AXIS_COLOR_Y = 0x00ff00; // green
+  private readonly AXIS_COLOR_Z = 0x0000ff; // blue
 
   constructor(addTexts = true) {
     super();

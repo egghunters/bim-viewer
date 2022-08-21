@@ -50,61 +50,61 @@ const TWEEN = require('tween')
 
 const decoderPath = "three/js/libs/draco/gltf/";
 export default class Viewer3D {
-  camera?: THREE.PerspectiveCamera | THREE.OrthographicCamera
-  scene?: THREE.Scene
-  renderer?: THREE.WebGLRenderer
-  css2dRenderer?: CSS2DRenderer // used to render html labels in the scene
-  ambientLight?: THREE.AmbientLight
-  directionalLight?: THREE.DirectionalLight
-  hemisphereLight?: THREE.HemisphereLight
-  controls?: OrbitControls
-  selectedObject: any | undefined = undefined
-  groundGrid?: THREE.Line
-  grassGround?: THREE.Mesh
-  sceneBackgroundColor: THREE.Color = new THREE.Color(0xebf2f7) // TODO: add it to settings
-  skyOfGradientRamp?: THREE.Mesh
-  stats?: Stats
+  camera?: THREE.PerspectiveCamera | THREE.OrthographicCamera;
+  scene?: THREE.Scene;
+  renderer?: THREE.WebGLRenderer;
+  css2dRenderer?: CSS2DRenderer; // used to render html labels in the scene
+  ambientLight?: THREE.AmbientLight;
+  directionalLight?: THREE.DirectionalLight;
+  hemisphereLight?: THREE.HemisphereLight;
+  controls?: OrbitControls;
+  selectedObject: any | undefined = undefined;
+  groundGrid?: THREE.Line;
+  grassGround?: THREE.Mesh;
+  sceneBackgroundColor: THREE.Color = new THREE.Color(0xebf2f7); // TODO: add it to settings
+  skyOfGradientRamp?: THREE.Mesh;
+  stats?: Stats;
   loadedModels: { [src: string]: { uuid: string, bbox?: THREE.BoxHelper } } = {}; // a map to store model file and uuid
   [propertyName: string]: any // any property name
-  private perspectiveCamera?: THREE.PerspectiveCamera
-  private orthoCamera?: THREE.OrthographicCamera
-  private perspectiveCameraControls?: OrbitControls
-  private orthoCameraConrols?: OrbitControls
-  private composerRenderEnabled = true // if we should call composer.render() in render()
-  private composerEnabled = false // if composer and passes are enabled
-  private composer?: EffectComposer
-  private renderPass?: RenderPass
-  private effectFxaaPass?: ShaderPass
-  private ssaoPass?: SSAOPass | ShaderPass
-  private saoPass?: SAOPass
-  private outlinePass?: OutlinePass
-  private ssaaRenderPass?: SSAARenderPass
-  private bloomPass?: BloomPass
-  private unrealBloomPass?: UnrealBloomPass
-  private height = 0
-  private width = 0
-  private raycaster?: THREE.Raycaster
-  private tween?: any // TWEEN.Tween
-  private savedMaterialsForOpacity?: MaterialInfo[] = []
-  private mouseMoved = false
-  private mouseDoubleClicked = false
-  private section?: ObjectsBoxSection | ObjectsPlaneSection
-  private measure?: Measure
-  private datGui?: DatGuiHelper
-  private gltfLoader?: GLTFLoader
-  private webcam?: WebCam
-  private webcamPlane?: THREE.Mesh
+  private perspectiveCamera?: THREE.PerspectiveCamera;
+  private orthoCamera?: THREE.OrthographicCamera;
+  private perspectiveCameraControls?: OrbitControls;
+  private orthoCameraConrols?: OrbitControls;
+  private composerRenderEnabled = true; // if we should call composer.render() in render()
+  private composerEnabled = false; // if composer and passes are enabled
+  private composer?: EffectComposer;
+  private renderPass?: RenderPass;
+  private effectFxaaPass?: ShaderPass;
+  private ssaoPass?: SSAOPass | ShaderPass;
+  private saoPass?: SAOPass;
+  private outlinePass?: OutlinePass;
+  private ssaaRenderPass?: SSAARenderPass;
+  private bloomPass?: BloomPass;
+  private unrealBloomPass?: UnrealBloomPass;
+  private height = 0;
+  private width = 0;
+  private raycaster?: THREE.Raycaster;
+  private tween?: any; // TWEEN.Tween
+  private savedMaterialsForOpacity?: MaterialInfo[] = [];
+  private mouseMoved = false;
+  private mouseDoubleClicked = false;
+  private section?: ObjectsBoxSection | ObjectsPlaneSection;
+  private measure?: Measure;
+  private datGui?: DatGuiHelper;
+  private gltfLoader?: GLTFLoader;
+  private webcam?: WebCam;
+  private webcamPlane?: THREE.Mesh;
   // RafHelper (requestAnimationFrame Helper) is used to improve render performance,
   // With this feature, it only renders when necessary, e.g. camera position changed, model loaded, etc.
   // We can disable this feature by assigning raf to undefined
-  private raf?: RafHelper = new RafHelper()
-  private renderEnabled = true // used together with RafHelper
-  private timeoutSymbol?: symbol // used together with RafHelper
-  private isFrustumInsectChecking = false
+  private raf?: RafHelper = new RafHelper();
+  private renderEnabled = true; // used together with RafHelper
+  private timeoutSymbol?: symbol; // used together with RafHelper
+  private isFrustumInsectChecking = false;
   // store events so that they can be removed before destroy
-  private events: { node: any, type: string, func: any }[] = []
-  private settings: SettingsType
-  private readonly postmate = PostmateManager.instance()
+  private events: { node: any, type: string, func: any }[] = [];
+  private settings: SettingsType;
+  private readonly postmate = PostmateManager.instance();
 
   constructor(width: number, height: number, settings: SettingsType = defaultSettings) {
     this.width = width;
@@ -601,7 +601,7 @@ export default class Viewer3D {
       // when main render process is done, enable composer render
       this.composerRenderEnabled = true;
     }, time);
-  }
+  };
 
   beforeDestroy() {
     // remove events
@@ -1844,7 +1844,7 @@ export default class Viewer3D {
         }
       });
     }
-  }
+  };
 
   /**
    * Calls addEventListener of a node.

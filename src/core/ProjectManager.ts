@@ -6,8 +6,8 @@ export interface Project {
   id: string;
   name: string;
   thumbnail?: string;
-  camera?: CameraConfig;
-  models: Model[];
+  camera?: CameraConfig; // eslint-disable-line
+  models: Model[]; // eslint-disable-line
 }
 
 export interface CameraConfig {
@@ -35,7 +35,7 @@ export interface Model {
  * 2) Common project, which is stored in back-end service (not implemented yet until today 2021.6)
  */
 export class ProjectManager {
-  static customProjects: Project[] = [] // stores online projects
+  static customProjects: Project[] = []; // stores online projects
 
   /**
    * Gets demo projects

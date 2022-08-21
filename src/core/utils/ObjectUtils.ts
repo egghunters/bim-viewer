@@ -506,7 +506,7 @@ export class ObjectUtils {
   /**
    * Outline default material
    */
-  private static OUTLINE_MATERIAL = new THREE.LineBasicMaterial({ name: "outline", color: 0x000000, transparent: true, opacity: 0.2 })
+  private static OUTLINE_MATERIAL = new THREE.LineBasicMaterial({ name: "outline", color: 0x000000, transparent: true, opacity: 0.2 });
 
   /**
    * Creates outlines for given object and children

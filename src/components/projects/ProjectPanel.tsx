@@ -8,7 +8,7 @@ export interface ProjectPanelProps {
 
 @Component
 export default class ProjectPanel extends Vue {
-  projectId?: string
+  projectId?: string;
 
   mounted() {
   }

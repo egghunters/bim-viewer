@@ -17,12 +17,12 @@ export interface PropertyPanelProps {
 
 @Component
 export default class PropertyPanel extends Vue {
-  @Prop({ required: true }) scene!: PropertyPanelProps["scene"]
-  @Prop({ required: true }) objId!: PropertyPanelProps["objId"]
+  @Prop({ required: true }) scene!: PropertyPanelProps["scene"];
+  @Prop({ required: true }) objId!: PropertyPanelProps["objId"];
 
   jsonComponents: any[] = [] // eslint-disable-line
-  propData: any[] = []
-  visible?: boolean = false
+  propData: any[] = [];
+  visible?: boolean = false;
 
   @Watch("objId")
   async updatePropData(id: string) {

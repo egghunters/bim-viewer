@@ -49,14 +49,14 @@ export interface BimTreeProps {
  */
 @Component
 export default class BimTree extends Vue {
-  @Prop({ required: true }) viewer!: BimTreeProps["viewer"]
+  @Prop({ required: true }) viewer!: BimTreeProps["viewer"];
 
-  private readonly checkMark = "√ "
-  private treeData?: TreeData[] = []
-  private filterText = ""
-  private visible?: boolean = false
-  private treeHeight = 300
-  private readonly postmate = PostmateManager.instance()
+  private readonly checkMark = "√ ";
+  private treeData?: TreeData[] = [];
+  private filterText = "";
+  private visible?: boolean = false;
+  private treeHeight = 300;
+  private readonly postmate = PostmateManager.instance();
   // need to save dropdown menu's state for each model, so we can update it accordingly
   private dropdownMenuState: { [uuid: string]: {
     components: { [command: string]: any }, // store the components, so we can update its status
@@ -70,7 +70,7 @@ export default class BimTree extends Vue {
     filterByFloorInfo?: { includeObjectUuids: string[], materialInfoList: MaterialInfo[] },
     isInstantiated?: boolean,
     isMerged?: boolean
-  } } = {}
+  } } = {};
 
   mounted() {
     this.setBimTreeVisibility(!!this.visible);

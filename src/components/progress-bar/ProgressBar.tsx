@@ -28,10 +28,10 @@ export interface ProgressBarProps {
 
 @Component
 export default class ProgressBar extends Vue {
-  @Prop({ default: 0 }) progressValue!: ProgressBarProps["progressValue"]
-  @Prop({ default: "Loading..." }) text?: ProgressBarProps["text"]
+  @Prop({ default: 0 }) progressValue!: ProgressBarProps["progressValue"];
+  @Prop({ default: "Loading..." }) text?: ProgressBarProps["text"];
 
-  progressBar?: any // Progressbar
+  progressBar?: any; // Progressbar
 
   mounted() {
     this.initProgressbar();

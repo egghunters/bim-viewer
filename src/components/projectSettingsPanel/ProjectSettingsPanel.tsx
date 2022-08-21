@@ -8,10 +8,10 @@ import Viewer3D from "@/core/Viewer3D";
 
 @Component
 export default class ProjectSettingsPanel extends Vue {
-  @Prop({ required: true }) projectId!: string
-  @Prop({ required: true }) viewer!: Viewer3D
-  activeName = "1"
-  settings: ProjectSettingType.Settings = ProjectSettingType.defaultSettings
+  @Prop({ required: true }) projectId!: string;
+  @Prop({ required: true }) viewer!: Viewer3D;
+  activeName = "1";
+  settings: ProjectSettingType.Settings = ProjectSettingType.defaultSettings;
 
   changeTab(e: any) {
   }

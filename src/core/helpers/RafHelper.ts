@@ -4,10 +4,10 @@
  * https://github.com/aisriver/myHome3D/blob/master/src/utils/RAF.ts
  */
 export default class RafHelper {
-  readonly TIMEOUT = "timeout"
-  readonly INTERVAL = "interval"
-  private timeoutMap: any = {} // timeout map, key is symbol
-  private intervalMap: any = {} // interval map
+  readonly TIMEOUT = "timeout";
+  readonly INTERVAL = "interval";
+  private timeoutMap: any = {}; // timeout map, key is symbol
+  private intervalMap: any = {}; // interval map
 
   private run(type = this.INTERVAL, cb: () => void, interval = 16.7) {
     const now = Date.now;

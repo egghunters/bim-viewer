@@ -24,13 +24,13 @@ interface TableRow {
 
 @Component
 export default class MaterialManager extends Vue {
-  @Prop({ required: true }) viewer!: MaterialManagerProps["viewer"]
+  @Prop({ required: true }) viewer!: MaterialManagerProps["viewer"];
 
-  visible?: boolean = false
-  objectUuid: string | null = null
-  materials: THREE.Material[] = []
-  materialData: TableRow[] = []
-  selectedMaterialIndex = -1
+  visible?: boolean = false;
+  objectUuid: string | null = null;
+  materials: THREE.Material[] = [];
+  materialData: TableRow[] = [];
+  selectedMaterialIndex = -1;
 
   mounted() {
     this.setPanelVisibility(!!this.visible);

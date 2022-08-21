@@ -71,17 +71,17 @@ export class BaseBoxSection {
   // --------------- Clipping box --------------------
 
   // basic data member
-  protected boxMin: Vector3 = new Vector3() // min point of section box
-  protected boxMax: Vector3 = new Vector3() // max point of section box
-  protected group: Group = new Group() // contains any object for section
-  protected planes: Array<Plane> = [] // section planes
+  protected boxMin: Vector3 = new Vector3(); // min point of section box
+  protected boxMax: Vector3 = new Vector3(); // max point of section box
+  protected group: Group = new Group(); // contains any object for section
+  protected planes: Array<Plane> = []; // section planes
   protected vertices = [
     new Vector3(), new Vector3(), new Vector3(), new Vector3(), // 4 vertices at the top
     new Vector3(), new Vector3(), new Vector3(), new Vector3() // 4 vertices at the bottom
-  ]
+  ];
 
-  protected faces: Array<BoxFace> = []
-  protected lines: Array<BoxLine> = []
+  protected faces: Array<BoxFace> = []; // eslint-disable-line
+  protected lines: Array<BoxLine> = []; // eslint-disable-line
 
   /**
    * Initialize clip box
@@ -222,9 +222,10 @@ export class BaseBoxSection {
   // ------------------- Mouse events -----------------------
 
   // basic data member
-  protected raycaster: Raycaster = new Raycaster()
-  protected mousePosition: Vector2 = new Vector2()
-  protected activeFace: BoxFace | null = null // the face that the mouse is hovering
+  protected raycaster: Raycaster = new Raycaster();
+  protected mousePosition: Vector2 = new Vector2();
+  // the face that the mouse is hovering
+  protected activeFace: BoxFace | null = null; // eslint-disable-line
 
   /**
    * Adds mouse event listener
@@ -274,7 +275,7 @@ export class BaseBoxSection {
         this.renderer.domElement.style.cursor = "auto";
       }
     }
-  }
+  };
 
   /**
    * Handles mouse down event, starts to drag a face using left button
@@ -291,7 +292,7 @@ export class BaseBoxSection {
         this.drag.start(axis, point);
       }
     }
-  }
+  };
 
   /**
    * The drag object, used to handle clip operation
@@ -387,7 +388,7 @@ export class BaseBoxSection {
       this.initOrUpdateFaces();
       this.initOrUpdateLines();
     }
-  }
+  };
 }
 
 /**
@@ -395,8 +396,8 @@ export class BaseBoxSection {
  */
 class BoxLine extends LineSegments {
   // basic data member
-  private normalMaterial = new LineBasicMaterial({ color: 0x795548 }) // 0xffa080, normal color of line (original color: 0xe1f2fb)
-  private activeMaterial = new LineBasicMaterial({ color: 0x4e342e }) // 0xff5000, active color of line (original color: 0x00ffff)
+  private normalMaterial = new LineBasicMaterial({ color: 0x795548 }); // 0xffa080, normal color of line (original color: 0xe1f2fb)
+  private activeMaterial = new LineBasicMaterial({ color: 0x4e342e }); // 0xff5000, active color of line (original color: 0x00ffff)
 
   /**
    * @param vertices two points of a line
@@ -431,9 +432,9 @@ class BoxLine extends LineSegments {
  */
 class BoxFace extends Mesh {
   // basic data member
-  axis: string
-  lines: Array<BoxLine> = [] // 4 lines relative to a face
-  backFace: Mesh // the back side of a face, used to display
+  axis: string;
+  lines: Array<BoxLine> = []; // 4 lines relative to a face
+  backFace: Mesh; // the back side of a face, used to display
 
   /**
    * @param axis axis of a face

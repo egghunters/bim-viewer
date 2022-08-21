@@ -33,10 +33,10 @@
     :global(.el-card) {
       min-width: 200px;
       font-size: 14px;
-      &__header {
+      &.header {
         padding: 8px 12px;
       }
-      &__body {
+      &.body {
         padding: 12px
       }
     }
