@@ -93,7 +93,7 @@ export default class DatGuiHelper {
     ssaaEnabled: false,
     bloomEnabled: false,
     unrealBloomEnabled: false
-  }
+  };
 
   /**
    * Init dat.GUI

@@ -9,16 +9,16 @@ export interface UploadFormProps {
 
 @Component
 export default class UploadForm extends Vue {
-  @Prop({ default: "" }) projectId!: UploadFormProps["projectId"]
+  @Prop({ default: "" }) projectId!: UploadFormProps["projectId"];
 
   @Emit()
   submit(data: {}) {}
 
-  uploadFiles: File[] = []
+  uploadFiles: File[] = [];
   uploadFormData = {
     projectName: "",
     projectDescription: ""
-  }
+  };
 
   get uploadTip() {
     return "Upload model file";

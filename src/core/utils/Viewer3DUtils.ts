@@ -134,7 +134,7 @@ export default class Viewer3DUtils {
 
   // need to store the objects that is twinkling, do this to avoid one object to be
   // twinkled while it is twinkling, that can be buggy!
-  private static twinklingObjectUuids: { [uuid: string]: boolean } = {}
+  private static twinklingObjectUuids: { [uuid: string]: boolean } = {};
 
   /**
    * Twinkle the object several times

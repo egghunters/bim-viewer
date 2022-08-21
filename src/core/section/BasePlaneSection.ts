@@ -91,21 +91,21 @@ export class BasePlaneSection {
   }
 
   // --------------- Sectionping plane ------------------
-  protected boxMin: Vector3 = new Vector3() // min point of section plane, use its 'y' for constrant
-  protected boxMax: Vector3 = new Vector3() // max point of section plane (ignore its y)
-  protected group: Group = new Group() // contains any object for section
-  protected planes: Plane[] = [] // section plane
+  protected boxMin: Vector3 = new Vector3(); // min point of section plane, use its 'y' for constrant
+  protected boxMax: Vector3 = new Vector3(); // max point of section plane (ignore its y)
+  protected group: Group = new Group(); // contains any object for section
+  protected planes: Plane[] = []; // section plane
   protected vertices = [
     new Vector3(), new Vector3(), new Vector3(), new Vector3() // yUp
-  ]
+  ];
 
-  protected controllerMarkers: THREE.Sprite[] = []
-  protected face?: BoxFace
-  protected lines: BoxLine[] = []
-  readonly normalMarkerOpacity = 0.5
-  readonly activeMarkerOpacity = 1
-  readonly normalColor = 0x4e342e // 0xffa080
-  readonly activeColor = 0x4e342e // 0xff5000
+  protected controllerMarkers: THREE.Sprite[] = [];
+  protected face?: BoxFace; // eslint-disable-line
+  protected lines: BoxLine[] = []; // eslint-disable-line
+  readonly normalMarkerOpacity = 0.5;
+  readonly activeMarkerOpacity = 1;
+  readonly normalColor = 0x4e342e; // 0xffa080
+  readonly activeColor = 0x4e342e; // 0xff5000
 
   /**
    * Initialize section plane
@@ -233,10 +233,11 @@ export class BasePlaneSection {
   // ------------------- Mouse events -----------------------
 
   // basic data member
-  protected raycaster: Raycaster = new Raycaster()
-  protected mousePosition: Vector2 = new Vector2()
-  protected activeFace: BoxFace | undefined = undefined // the face that the mouse is hovering
-  protected activeMarker: THREE.Sprite | undefined = undefined
+  protected raycaster: Raycaster = new Raycaster();
+  protected mousePosition: Vector2 = new Vector2();
+  // the face that the mouse is hovering
+  protected activeFace: BoxFace | undefined = undefined; // eslint-disable-line
+  protected activeMarker: THREE.Sprite | undefined = undefined;
 
   /**
    * Adds mouse event listener
@@ -306,7 +307,7 @@ export class BasePlaneSection {
         this.renderer.domElement.style.cursor = "auto";
       }
     }
-  }
+  };
 
   /**
    * Handles mouse down event, starts to drag a face using left button
@@ -337,7 +338,7 @@ export class BasePlaneSection {
         this.drag.start(axis, point);
       }
     }
-  }
+  };
 
   /**
    * The drag object, used to handle section operation
@@ -432,9 +433,9 @@ export class BasePlaneSection {
       this.initOrUpdateFace();
       this.initOrUpdateLines();
     }
-  }
+  };
 
-  spriteMaterial?: THREE.SpriteMaterial
+  spriteMaterial?: THREE.SpriteMaterial;
 
   /**
    * Initializes point marker material
@@ -476,8 +477,8 @@ export class BasePlaneSection {
  */
 class BoxLine extends LineSegments {
   // basic data member
-  private normalMaterial = new LineBasicMaterial({ color: 0x795548 }) // normal color of line (original color: 0xe1f2fb)
-  private activeMaterial = new LineBasicMaterial({ color: 0x4e342e }) // active color of line (original color: 0x00ffff)
+  private normalMaterial = new LineBasicMaterial({ color: 0x795548 }); // normal color of line (original color: 0xe1f2fb)
+  private activeMaterial = new LineBasicMaterial({ color: 0x4e342e }); // active color of line (original color: 0x00ffff)
 
   /**
    * @param vertices two points of a line
@@ -512,8 +513,8 @@ class BoxLine extends LineSegments {
  */
 class BoxFace extends Mesh {
   // basic data member
-  axis: string
-  lines: BoxLine[] = [] // 4 lines relative to a face
+  axis: string;
+  lines: BoxLine[] = []; // 4 lines relative to a face
 
   /**
    * @param axis axis of a face

@@ -10,11 +10,11 @@ import styles from "./Projects.module.scss";
 @Component
 export default class Projects extends Vue {
   // define a global static variable, so we only need to get demo projects once
-  static sampleProjects: Project[] = []
-  sampleProjects: Project[] = []
-  onLoading = false
-  activateUpdate = false
-  customProjects: Project[] = []
+  static sampleProjects: Project[] = [];
+  sampleProjects: Project[] = [];
+  onLoading = false;
+  activateUpdate = false;
+  customProjects: Project[] = [];
 
   async mounted() {
     if (Projects.sampleProjects.length === 0) {

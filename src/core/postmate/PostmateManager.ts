@@ -14,22 +14,22 @@ export interface History {
  * https://github.com/dollarshaveclub/postmate
  */
 export class PostmateManager {
-  isEmbedded = false
-  childApi: any
+  isEmbedded = false;
+  childApi: any;
   // stores all properties and functions
-  model: { [property: string]: any } = {}
+  model: { [property: string]: any } = {};
   // the different between property and function is that
   // - property has return value, ParentAPI should call ParentAPI.get(property) to get a Promise
   // - function doesn't return anything, ParentAPI should call ParentAPI.call(property, data)
-  properties: string[] = [] // store all properties
-  functions: string[] = [] // store all functions
+  properties: string[] = []; // store all properties
+  functions: string[] = []; // store all functions
   // store sent/received message history
-  histories: History[] = []
+  histories: History[] = [];
 
   /**
    * Singleton design pattern
    */
-  private static _instance: PostmateManager | undefined = undefined
+  private static _instance: PostmateManager | undefined = undefined; // eslint-disable-line
   public static instance(): PostmateManager {
     if (!PostmateManager._instance) {
       PostmateManager._instance = new PostmateManager();

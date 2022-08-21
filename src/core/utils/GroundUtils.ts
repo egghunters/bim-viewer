@@ -2,13 +2,13 @@
 import * as THREE from "three";
 
 export default class GroundUtils {
-  static GROUND_GRID_NAME = "GROUND_GRID"
-  static GRASS_GROUND_NAME = "GRASS_GROUND"
-  static DEFAULT_WIDTH = 1000
-  static DEFAULT_HEIGHT = 1000
-  static DEFAULT_WIDTH_SEGS = 100 // number of segments
-  static DEFAULT_HEIGHT_SETS = 100
-  static DEFAULT_MAT_PARAMS = { color: 0xc3c3c3, transparent: true, opacity: 0.5, wireframeLinewidth: 0.5 }
+  static GROUND_GRID_NAME = "GROUND_GRID";
+  static GRASS_GROUND_NAME = "GRASS_GROUND";
+  static DEFAULT_WIDTH = 1000;
+  static DEFAULT_HEIGHT = 1000;
+  static DEFAULT_WIDTH_SEGS = 100; // number of segments
+  static DEFAULT_HEIGHT_SETS = 100;
+  static DEFAULT_MAT_PARAMS = { color: 0xc3c3c3, transparent: true, opacity: 0.5, wireframeLinewidth: 0.5 };
 
   /**
    * Creates ground grid

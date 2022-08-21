@@ -17,32 +17,32 @@ export enum MeasureMode {
 export default class Measure {
   // lineWidth is ignored for Chrome on Windows, which is a known issue:
   // https://github.com/mrdoob/three.js/issues/269
-  static LINE_MATERIAL = new THREE.LineBasicMaterial({ color: 0xfff000, linewidth: 2, opacity: 0.8, transparent: true, side: THREE.DoubleSide, depthWrite: false, depthTest: false })
-  static MESH_MATERIAL = new THREE.MeshBasicMaterial({ color: 0x87cefa, transparent: true, opacity: 0.8, side: THREE.DoubleSide, depthWrite: false, depthTest: false })
-  static MAX_DISTANCE = 500 // when intersected object's distance is too far away, then ignore it
-  static OBJ_NAME = "object_for_measure"
-  static LABEL_NAME = "label_for_measure"
+  static LINE_MATERIAL = new THREE.LineBasicMaterial({ color: 0xfff000, linewidth: 2, opacity: 0.8, transparent: true, side: THREE.DoubleSide, depthWrite: false, depthTest: false });
+  static MESH_MATERIAL = new THREE.MeshBasicMaterial({ color: 0x87cefa, transparent: true, opacity: 0.8, side: THREE.DoubleSide, depthWrite: false, depthTest: false });
+  static MAX_DISTANCE = 500; // when intersected object's distance is too far away, then ignore it
+  static OBJ_NAME = "object_for_measure";
+  static LABEL_NAME = "label_for_measure";
 
-  public isCompleted = false // whether measure operation is completed or not
-  protected mode: MeasureMode
-  protected renderer: THREE.WebGLRenderer
-  protected scene: THREE.Scene
-  protected camera: THREE.Camera
-  protected controls: OrbitControls
-  protected spriteMaterial?: THREE.SpriteMaterial
-  protected raycaster?: THREE.Raycaster
-  protected mouseMoved = false
-  protected pointMarkers: THREE.Sprite[] = [] // used for measure distance and area
-  protected polyline?: THREE.Line // the line user draws while measuring distance
-  protected faces?: THREE.Mesh // the faces user draws while measuring area
-  protected curve?: THREE.Line // the arc curve to indicate the angle in degree
-  protected tempPointMarker?: THREE.Sprite // used to store temporary Points
-  protected tempLine?: THREE.Line // used to store temporary line, which is useful for drawing line/area/angle as mouse moves
-  protected tempLabel?: CSS2DObject // used to store temporary label as mouse moves
-  protected labels: CSS2DObject[] = [] // stores labels, so that we can clear them up when necessary
-  protected pointArray: THREE.Vector3[] = []
-  protected lastClickTime?: number // save the last click time, in order to detect double click event
-  protected settings: SettingsType
+  public isCompleted = false; // whether measure operation is completed or not
+  protected mode: MeasureMode;
+  protected renderer: THREE.WebGLRenderer;
+  protected scene: THREE.Scene;
+  protected camera: THREE.Camera;
+  protected controls: OrbitControls;
+  protected spriteMaterial?: THREE.SpriteMaterial;
+  protected raycaster?: THREE.Raycaster;
+  protected mouseMoved = false;
+  protected pointMarkers: THREE.Sprite[] = []; // used for measure distance and area
+  protected polyline?: THREE.Line; // the line user draws while measuring distance
+  protected faces?: THREE.Mesh; // the faces user draws while measuring area
+  protected curve?: THREE.Line; // the arc curve to indicate the angle in degree
+  protected tempPointMarker?: THREE.Sprite; // used to store temporary Points
+  protected tempLine?: THREE.Line; // used to store temporary line, which is useful for drawing line/area/angle as mouse moves
+  protected tempLabel?: CSS2DObject; // used to store temporary label as mouse moves
+  protected labels: CSS2DObject[] = []; // stores labels, so that we can clear them up when necessary
+  protected pointArray: THREE.Vector3[] = [];
+  protected lastClickTime?: number; // save the last click time, in order to detect double click event
+  protected settings: SettingsType;
 
   constructor(renderer: THREE.WebGLRenderer, scene: THREE.Scene, camera: THREE.Camera, controls: OrbitControls, mode: MeasureMode = MeasureMode.Distance, settings: SettingsType) {
     this.mode = mode;
@@ -257,7 +257,7 @@ export default class Measure {
 
   mousedown = (e: MouseEvent) => {
     this.mouseMoved = false;
-  }
+  };
 
   mousemove = (e: MouseEvent) => {
     this.mouseMoved = true;
@@ -300,19 +300,19 @@ export default class Measure {
         this.tempLine = line;
       }
     }
-  }
+  };
 
   mouseup = (e: MouseEvent) => {
     // if mouseMoved is ture, then it is probably moving, instead of clicking
     if (!this.mouseMoved) {
       this.onMouseClicked(e);
     }
-  }
+  };
 
   dblclick = (e: MouseEvent) => {
     // double click means to complete the draw operation
     this.complete();
-  }
+  };
 
   onMouseClicked = (e: MouseEvent) => {
     if (!this.raycaster || !this.camera || !this.scene || this.isCompleted) {
@@ -365,7 +365,7 @@ export default class Measure {
     if (this.mode === MeasureMode.Angle && this.pointArray.length >= 3) {
       this.complete();
     }
-  }
+  };
 
   keydown = (e: KeyboardEvent) => {
     if (e.key === "Enter") {
@@ -373,7 +373,7 @@ export default class Measure {
     } else if (e.key === "Escape") {
       this.cancel();
     }
-  }
+  };
 
   /**
    * The the closest intersection
@@ -401,7 +401,7 @@ export default class Measure {
       }
     }
     return null;
-  }
+  };
 
   /**
    * Adds or update temp label and position

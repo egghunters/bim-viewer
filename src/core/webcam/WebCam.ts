@@ -3,18 +3,18 @@ import * as THREE from "three";
 // Reference to https://sbcode.net/threejs/webcam/
 // This class is just a demo yet
 export class WebCam {
-  private webcamCanvas: HTMLCanvasElement
-  private webcam: HTMLVideoElement
-  private canvasCtx: CanvasRenderingContext2D
-  private webcamTexture: THREE.Texture
-  private shaderMaterial: THREE.ShaderMaterial
+  private webcamCanvas: HTMLCanvasElement;
+  private webcam: HTMLVideoElement;
+  private canvasCtx: CanvasRenderingContext2D;
+  private webcamTexture: THREE.Texture;
+  private shaderMaterial: THREE.ShaderMaterial;
 
   readonly vertexShader = `
     varying vec2 vUv;
     void main( void ) {
         vUv = uv;
         gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0);
-    }`
+    }`;
 
   readonly fragmentShader = `
     uniform vec3 keyColor;
@@ -35,7 +35,7 @@ export class WebCam {
         
         float blend = smoothstep(similarity, similarity + smoothness, distance(vec2(Cr2, Cb2), vec2(Cr1, Cb1)));
         gl_FragColor = vec4(videoColor.rgb, videoColor.a * blend); 
-    }`
+    }`;
 
   constructor() {
     const webcam = document.createElement("video");

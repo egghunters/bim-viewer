@@ -11,12 +11,12 @@ export interface SnapshotPanelProps {
 
 @Component
 export default class SnapshotPanel extends Vue {
-  @Prop({ required: true }) canvas!: SnapshotPanelProps["canvas"]
+  @Prop({ required: true }) canvas!: SnapshotPanelProps["canvas"];
 
-  private type = "image/png" // png, jpeg, etc.
-  private quality = 0.5 // a value between 0 and 1
-  private imageData = ""
-  private visible?: boolean = false
+  private type = "image/png"; // png, jpeg, etc.
+  private quality = 0.5; // a value between 0 and 1
+  private imageData = "";
+  private visible?: boolean = false;
 
   mounted() {
     this.setPanelVisibility(!!this.visible);
@@ -61,7 +61,7 @@ export default class SnapshotPanel extends Vue {
           <el-button icon="el-icon-close" class="popup-title-close" onClick={ this.close }></el-button>
         </div>
         <div class="image-container">
-          <img id="image" src={this.imageData} class="image" title='Right click to download it' download></img>
+          <img id="image" src={this.imageData} class="image" title='Right click to download it'></img>
           <a href={this.imageData} download="snapshot.png" class="download-icon">Download</a>
         </div>
       </div>

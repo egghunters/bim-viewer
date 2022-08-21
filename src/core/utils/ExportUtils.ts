@@ -4,14 +4,14 @@ import { GLTFExporter, GLTFExporterOptions } from "three/examples/jsm/exporters/
 import { OBJExporter } from "three/examples/jsm/exporters/OBJExporter";
 
 export class ExportUtils {
-  public static EXTENSION_GLTF = ".gltf"
-  public static EXTENSION_GLB = ".glb"
-  public static EXTENSION_OBJ = ".obj"
-  public static EXTENSION_DRACO = ".drc"
-  public static EXTENSION_JSON = ".json"
+  public static EXTENSION_GLTF = ".gltf";
+  public static EXTENSION_GLB = ".glb";
+  public static EXTENSION_OBJ = ".obj";
+  public static EXTENSION_DRACO = ".drc";
+  public static EXTENSION_JSON = ".json";
 
   // creates a link element in order to trigger download
-  private static downloadLink: HTMLAnchorElement
+  private static downloadLink: HTMLAnchorElement;
 
   /**
    * Exports given object to gltf file

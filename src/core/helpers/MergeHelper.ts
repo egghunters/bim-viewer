@@ -8,8 +8,8 @@ import MaterialUtils from "../utils/MaterialUtils";
  * MergeHelper class is used to merge child objects for a given object
  */
 export default class MergeHelper {
-  object: THREE.Object3D
-  counter = 0 // used to avoid printing too many logs
+  object: THREE.Object3D;
+  counter = 0; // used to avoid printing too many logs
 
   constructor(object: THREE.Object3D) {
     this.object = object;

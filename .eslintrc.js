@@ -7,10 +7,10 @@ module.exports = {
   // plugins: [
   //   "@typescript-eslint"
   // ],
-  "extends": [
+  extends: [
     "plugin:vue/essential",
     "@vue/standard",
-    "@vue/typescript",
+    "@vue/typescript"
     // "eslint:recommended",
     // "plugin:@typescript-eslint/eslint-recommended",
     // "plugin:@typescript-eslint/recommended"
@@ -34,7 +34,7 @@ module.exports = {
       }
     }],
     quotes: ["error", "double"],
-    semi: ["error", "always", { "omitLastInOneLineBlock": true }],
+    semi: ["error", "always", { omitLastInOneLineBlock: true }],
     "space-before-function-paren": ["error", "never"]
   },
   parserOptions: {
@@ -51,4 +51,4 @@ module.exports = {
       }
     }
   ]
-}
+};

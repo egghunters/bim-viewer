@@ -7,16 +7,17 @@ import SceneUtils from "./SceneUtils";
  * https://github.com/mrdoob/three.js/blob/master/examples/webgl_materials_lightmap.html
  */
 export default class SkyboxUtils {
-  static NAME = "SKYBOX"
-  static MIN_SKY_RADIUS = 4000
-  static MAX_SKY_RADIUS = 20000
+  static NAME = "SKYBOX";
+  static MIN_SKY_RADIUS = 4000;
+  static MAX_SKY_RADIUS = 20000;
   static vertexShader = `
     varying vec3 vWorldPosition;
     void main() {
       vec4 worldPosition = modelMatrix * vec4( position, 1.0 );
       vWorldPosition = worldPosition.xyz;
       gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
-    }`
+    }`;
+
   static fragmentShader = `
     uniform vec3 topColor;
     uniform vec3 skylineColor;
@@ -35,7 +36,7 @@ export default class SkyboxUtils {
         color = mix( skylineColor, bottomColor, max( pow( max( -h, 0.0 ), exponent ), 0.0 ) );
       }
       gl_FragColor = vec4(color , 1.0 );
-    }`
+    }`;
 
   /**
    * Creates sky
@@ -108,7 +109,7 @@ export default class SkyboxUtils {
    * Currently, there is only a 'cloudy' texture.
    */
   public static async createSkyFromTextures(subFolder: "cloudy" = "cloudy"): Promise<THREE.CubeTexture> {
-    var loader = new THREE.CubeTextureLoader();
+    const loader = new THREE.CubeTextureLoader();
     loader.setPath(`images/skybox/${subFolder}/`);
     // six pictures in order of: x, -x, y, -y, z, -z, aka, right, left, top, bottom, front, back
     const pictures = ["right.jpg", "left.jpg", "top.jpg", "bottom.jpg", "front.jpg", "back.jpg"];
