@@ -1,4 +1,6 @@
 import * as THREE from "three";
+import { Font, FontLoader } from "three/examples/jsm/loaders/FontLoader";
+import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry";
 
 export default class CoordinateAxes extends THREE.Object3D {
   name = "COORDINATE_AXES";
@@ -32,7 +34,7 @@ export default class CoordinateAxes extends THREE.Object3D {
 
   addTexts() {
     // should be able to load font from threejs' folder, don't know how...
-    new THREE.FontLoader().load("three/fonts/helvetiker_regular.typeface.json", (font) => {
+    new FontLoader().load("three/fonts/helvetiker_regular.typeface.json", (font) => {
       const x = this.createText(font, "x", new THREE.Color(0xff0000));
       const y = this.createText(font, "y", new THREE.Color(0x00ff00));
       const z = this.createText(font, "z", new THREE.Color(0x0000ff));
@@ -43,8 +45,8 @@ export default class CoordinateAxes extends THREE.Object3D {
     });
   }
 
-  createText(font: THREE.Font, text: string, color?: THREE.Color) {
-    const textGeom = new THREE.TextGeometry(text, {
+  createText(font: Font, text: string, color?: THREE.Color) {
+    const textGeom = new TextGeometry(text, {
       font: font,
       size: 0.3,
       height: 0.02,

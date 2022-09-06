@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { BufferGeometryUtils } from "three/examples/jsm/utils/BufferGeometryUtils";
+import { mergeBufferGeometries } from "three/examples/jsm/utils/BufferGeometryUtils";
 import { matrixAutoUpdate } from "@/core/Constants";
 import GeometryUtils from "../utils/GeometryUtils";
 import MaterialUtils from "../utils/MaterialUtils";
@@ -99,7 +99,7 @@ export default class MergeHelper {
         }
       });
       if (geometries.length > 0) {
-        const mergedBufferGeometry = BufferGeometryUtils.mergeBufferGeometries(geometries);
+        const mergedBufferGeometry = mergeBufferGeometries(geometries);
         geometries.forEach((geom: THREE.BufferGeometry) => geom.dispose()); // dispose as soon as posibble
         geometries = [];
         const mergedMesh = new THREE.Mesh(mergedBufferGeometry, firstObj.material);
@@ -219,7 +219,7 @@ export default class MergeHelper {
         const geom = applyMatrix((obj as THREE.Mesh).geometry.clone(), obj); // need to clone geometry, bacause a geometry can be shared by many objects
         geometries.push(geom);
       }
-      const geom = BufferGeometryUtils.mergeBufferGeometries(geometries);
+      const geom = mergeBufferGeometries(geometries);
       geometries.forEach((geom: THREE.BufferGeometry) => geom.dispose()); // dispose as soon as posibble
       geometries = [];
       if (geom) {
