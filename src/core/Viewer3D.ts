@@ -1,8 +1,7 @@
 import * as THREE from "three";
-import { CSS2DObject, CSS2DRenderer } from "three/examples/jsm/renderers/CSS2DRenderer";
+import { CSS2DRenderer } from "three/examples/jsm/renderers/CSS2DRenderer";
 import { Collada, ColladaLoader } from "three/examples/jsm/loaders/ColladaLoader";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
-import { DDSLoader } from "three/examples/jsm/loaders/DDSLoader";
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader";
 import { GLTF, GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { IFCLoader } from "three/examples/jsm/loaders/IFCLoader";
@@ -11,7 +10,6 @@ import { PLYLoader } from "three/examples/jsm/loaders/PLYLoader";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import { STLLoader } from "three/examples/jsm/loaders/STLLoader";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { DeviceOrientationControls } from "three/examples/jsm/controls/DeviceOrientationControls";
 import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js";
 import { FXAAShader } from "three/examples/jsm/shaders/FXAAShader";
 import { BloomPass } from "three/examples/jsm/postprocessing/BloomPass";
