@@ -46,7 +46,7 @@
     "progressbar.js": "^1.1.0",
     "querystring": "^0.2.0",
     "screenfull": "^5.1.0",
-    "three": "^0.136.0",
+    "three": "^0.141.0",
     "tween": "^0.9.0",
     "utf-8-validate": "^5.0.5",
     "vue": "^2.6.11",
@@ -58,7 +58,7 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.14.2",
-    "@types/three": "^0.136.0",
+    "@types/three": "^0.141.0",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "@vue/cli-plugin-babel": "~4.5.0",

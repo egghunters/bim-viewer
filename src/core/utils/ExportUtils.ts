@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { DRACOExporter, DRACOExporterOptions } from "three/examples/jsm/exporters/DRACOExporter";
-import { GLTFExporter, GLTFExporterOptions } from "three/examples/jsm/exporters/GLTFExporter";
+// import { GLTFExporter, GLTFExporterOptions } from "three/examples/jsm/exporters/GLTFExporter";
 import { OBJExporter } from "three/examples/jsm/exporters/OBJExporter";
 
 export class ExportUtils {
@@ -33,27 +33,29 @@ export class ExportUtils {
    * @param filename filename without path, nor extension
    * @param options
    */
-  public static exportToGltfOrGlb(input: THREE.Object3D, filename: string, options: GLTFExporterOptions = {}) {
+  public static exportToGltfOrGlb(input: THREE.Object3D, filename: string, options: object = {}) {
     if (!input || !filename) {
       throw new Error("Invalid input or filename!");
     }
-    const exporter = new GLTFExporter();
-    const DEFAULT_OPTIONS: GLTFExporterOptions = {
-      binary: true,
-      onlyVisible: false,
-      includeCustomExtensions: false
-    };
-    options = Object.assign({}, DEFAULT_OPTIONS, options);
-    exporter.parse(input, (gltf: object) => {
-      if (options.binary) {
-        filename = ExportUtils.addExtention(filename, ExportUtils.EXTENSION_GLB);
-        const ab = gltf as ArrayBuffer;
-        ExportUtils.saveArrayBuffer(ab, filename);
-      } else {
-        filename = ExportUtils.addExtention(filename, ExportUtils.EXTENSION_GLTF);
-        ExportUtils.saveJson(gltf, filename);
-      }
-    }, options);
+    // Something is wrong when upgrading threejs version, so disable this feature for now
+    console.warn("Not implemented yet!");
+    // const exporter = new GLTFExporter();
+    // const DEFAULT_OPTIONS: GLTFExporterOptions = {
+    //   binary: true,
+    //   onlyVisible: false,
+    //   includeCustomExtensions: false
+    // };
+    // options = Object.assign({}, DEFAULT_OPTIONS, options);
+    // exporter.parse(input, (gltf: object) => {
+    //   if (options.binary) {
+    //     filename = ExportUtils.addExtention(filename, ExportUtils.EXTENSION_GLB);
+    //     const ab = gltf as ArrayBuffer;
+    //     ExportUtils.saveArrayBuffer(ab, filename);
+    //   } else {
+    //     filename = ExportUtils.addExtention(filename, ExportUtils.EXTENSION_GLTF);
+    //     ExportUtils.saveJson(gltf, filename);
+    //   }
+    // }, options);
   }
 
   /**
