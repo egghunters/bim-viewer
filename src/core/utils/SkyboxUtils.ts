@@ -55,7 +55,7 @@ export default class SkyboxUtils {
     };
     // note that the camera's far distance should bigger than the radius,
     // otherwise, you cannot see the sky
-    const skyGeo = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
+    const skyGeo = new THREE.SphereGeometry(radius, widthSegments, heightSegments);
     const skyMat = new THREE.ShaderMaterial({
       uniforms: uniforms,
       vertexShader: this.vertexShader,

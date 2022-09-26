@@ -52,7 +52,7 @@ export default class GroundUtils {
         const groundMaterial = new THREE.MeshLambertMaterial({ map: groundTexture });
         groundMaterial.side = THREE.FrontSide;
 
-        const mesh = new THREE.Mesh(new THREE.PlaneBufferGeometry(width, height), groundMaterial);
+        const mesh = new THREE.Mesh(new THREE.PlaneGeometry(width, height), groundMaterial);
         mesh.rotation.x = -Math.PI / 2;
         mesh.position.y = 0;
         mesh.receiveShadow = true;
