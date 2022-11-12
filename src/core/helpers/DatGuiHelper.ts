@@ -3,7 +3,6 @@ import * as dat from "dat.gui";
 import { BooleanMessageData, MessageId } from "../postmate/Message";
 import { MeasureMode } from "../measure/Measure";
 import { PostmateManager } from "../postmate/PostmateManager";
-// import { ObjectUtils } from './ObjectUtils'
 import Exploder from "../exploder/Exploder";
 import GroundUtils from "../utils/GroundUtils";
 import SceneUtils from "../utils/SceneUtils";
