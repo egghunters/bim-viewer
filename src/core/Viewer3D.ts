@@ -1686,8 +1686,7 @@ export default class Viewer3D {
       const pass = new BloomPass(
         1, // strength
         25, // kernel size
-        4, // sigma ?
-        256 // blur render target resolution
+        4 // sigma ?
       );
       pass.renderToScreen = true; // usually set it to true if it is the last pass
       this.composer.addPass(pass);
