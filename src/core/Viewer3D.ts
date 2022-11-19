@@ -3,7 +3,7 @@ import { CSS2DRenderer } from "three/examples/jsm/renderers/CSS2DRenderer";
 import { Collada, ColladaLoader } from "three/examples/jsm/loaders/ColladaLoader";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader";
-import { GLTF, GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { IFCLoader } from "three/examples/jsm/loaders/IFCLoader";
 import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader";
 import { PLYLoader } from "three/examples/jsm/loaders/PLYLoader";
