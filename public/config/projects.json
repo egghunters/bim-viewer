@@ -4,15 +4,15 @@
     "name": "rac basic sample project",
     "thumbnail": "projects/rac_basic_sample_project/thumbnail.png",
     "camera": {
-      "eye": [-65, 37, 41],
-      "look": [-15, 0, 15]
+      "eye": [-130, 20, 70],
+      "look": [-35, 0, 40]
     },
     "models": [{
       "name": "rac basic sample project",
       "src": "projects/rac_basic_sample_project/rac_basic_sample_project.gltf",
       "position": [0, 0, 0],
-      "rotation": [-90, 0, 0],
-      "scale": [0.001, 0.001, 0.001],
+      "rotation": [0, 0, 0],
+      "scale": [1, 1, 1],
       "instantiate": false,
       "merge": false,
       "edges": true,
