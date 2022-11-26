@@ -24,6 +24,9 @@ npm run lint
 ```
 
 ## Features
+- Load and view model in 3D
+![view_model.png](public/images/snapshots/view_model.png)
+
 - Orthographic camera
 ![ortho.gif](public/images/snapshots/ortho.gif)
 
