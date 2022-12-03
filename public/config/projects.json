@@ -39,10 +39,10 @@
     }]
   }, {
     "id": "building_1",
-    "name": "IFC building",
+    "name": "building (IFC)",
     "thumbnail": "projects/building_1/thumbnail.png",
     "models": [{
-      "name": "IFC building",
+      "name": "building",
       "src": "projects/building_1/building_1.ifc",
       "position": [0, 0, 0],
       "rotation": [0, 0, 0],
@@ -51,6 +51,20 @@
       "merge": false,
       "edges": true,
       "visible": true
+    }]
+  }, {
+    "id": "car",
+    "name": "car (FBX)",
+    "thumbnail": "projects/car/thumbnail.png",
+    "models": [{
+      "name": "car",
+      "src": "projects/car/car.fbx",
+      "position": [0, 0, 0],
+      "rotation": [-90, 0, 0],
+      "scale": [1, 1, 1],
+      "instantiate": false,
+      "merge": false,
+      "edges": false
     }]
   }
 ]
