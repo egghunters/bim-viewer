@@ -4,7 +4,7 @@ import { Collada, ColladaLoader } from "three/examples/jsm/loaders/ColladaLoader
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { IFCLoader } from "three/examples/jsm/loaders/IFCLoader";
+import { HighlightConfigOfModel, IFCLoader, IFCModel } from "three/examples/jsm/loaders/IFCLoader";
 import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader";
 import { PLYLoader } from "three/examples/jsm/loaders/PLYLoader";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
@@ -90,6 +90,7 @@ export default class Viewer3D {
   private measure?: Measure;
   private datGui?: DatGuiHelper;
   private gltfLoader?: GLTFLoader;
+  private ifcLoader?: IFCLoader;
   private webcam?: WebCam;
   private webcamPlane?: THREE.Mesh;
   // RafHelper (requestAnimationFrame Helper) is used to improve render performance,
@@ -805,19 +806,22 @@ export default class Viewer3D {
     if (!this.scene) {
       throw new Error("Failed to load!");
     }
-    const loader = new IFCLoader();
-    /**
-     * web-ifc.wasm
-     * wasm is required in order to load ifc file, we'll need to copy:
-     * three/examples/jsm/loaders/ifc/web-ifc.wasm to /public/three/js/libs/ifc/
-     *
-     * TODO: support highlight/select/hide individual object, rather than the entire object:
-     * https://github.com/mrdoob/three.js/pull/21905
-     */
-    const mgr = (loader as any).ifcManager;
-    if (mgr && typeof mgr.setWasmPath === "function") {
-      mgr.setWasmPath("../three/js/libs/ifc/");
+    if (!this.ifcLoader) {
+      this.ifcLoader = new IFCLoader();
+      /**
+       * web-ifc.wasm
+       * wasm is required in order to load ifc file, we'll need to copy:
+       * three/examples/jsm/loaders/ifc/web-ifc.wasm to /public/three/js/libs/ifc/
+       *
+       * TODO: support highlight/select/hide individual object, rather than the entire object:
+       * https://github.com/mrdoob/three.js/pull/21905
+       */
+      const mgr = this.ifcLoader.ifcManager;
+      if (mgr && typeof mgr.setWasmPath === "function") {
+        mgr.setWasmPath("../three/js/libs/ifc/");
+      }
     }
+    const loader = this.ifcLoader;
     return new Promise<THREE.Object3D>((resolve, reject) => {
       loader.load(url, (ifcModel: any) => {
         this.applyOptionsAndAddToScene(url, ifcModel.mesh, options);
@@ -1117,7 +1121,7 @@ export default class Viewer3D {
     highlightColor?: THREE.Color,
     opacity?: number
   } = {}) {
-    const { depthTest = undefined, highlightColor = new THREE.Color(0x08e8de), opacity = 0.7 } = options;
+    const { depthTest = undefined, highlightColor = new THREE.Color(0xff00ff), opacity = 0.7 } = options;
     // change highlight color here is we don't like it
     // the original mererial may be used by many objects, we cannot change the original one, thus need to clone
     const mat = material.clone();
@@ -1204,6 +1208,15 @@ export default class Viewer3D {
           // if the same InstancedMesh is selected and with the same instanceId, then deselect it
           object = undefined;
         }
+      // donna know why I cannot use "instanceof IFCModel" here
+      } else if ((object as IFCModel).ifcManager) {
+        // const ifcObj = object as IFCModel;
+        const faceIndex = (firstIntersect && firstIntersect.faceIndex) || -1;
+        instanceId = faceIndex; // for IFCModel, instanceId means faceIndex!!
+        if (this.selectedObject && this.selectedObject.userData.faceIndex === faceIndex) {
+          // if the same IFCModel is selected and with the same instanceId, then deselect it
+          object = undefined;
+        }
       } else if (this.selectedObject && this.selectedObject.uuid === object.uuid) {
         // if one object is selected twice, deselect it
         object = undefined;
@@ -1211,6 +1224,8 @@ export default class Viewer3D {
     }
     object ? this.selectObject(object, instanceId) : this.clearSelection();
   }
+
+  private ifcHighlightMaterial = new THREE.MeshPhongMaterial({ color: 0xff00ff, depthTest: false, transparent: true, opacity: 0.3 });
 
   /**
    * Select or unselect an object.
@@ -1229,13 +1244,13 @@ export default class Viewer3D {
    *   originalMaterial: THREE.Material
    * }
    * @param object
-   * @param instanceId pass in instanceId if an InstancedMesh is selected
+   * @param instanceIdOrFaceIndexId pass in instanceId if an InstancedMesh is selected, or faceIndexId for IFCModel
    * @param depthTest set to false if caller want to make sure user can see it. When an object is
    * selected by user manually, we don't need to make sure user can see it. While if selection is
    * made by program, we parbably need to make sure user can see it, in other words, the selected
    * object won't be blocked by other objects.
    */
-  public selectObject(object?: THREE.Object3D, instanceId?: number, depthTest: boolean | undefined = undefined) {
+  public selectObject(object?: THREE.Object3D, instanceIdOrFaceIndexId?: number, depthTest: boolean | undefined = undefined) {
     // revert last selected object's material if any
     if (this.selectedObject) {
       const userData = this.selectedObject.userData;
@@ -1260,6 +1275,15 @@ export default class Viewer3D {
         }
         userData.clonedMesh.geometry.dispose();
         delete userData.clonedMesh;
+      } else if (userData.highlightConfigOfModel) {
+        const ifcManager = this.ifcLoader?.ifcManager;
+        if (ifcManager) {
+          const cfg = userData.highlightConfigOfModel;
+          ifcManager.removeSubset(cfg.modelID);
+        }
+        this.ifcHighlightMaterial.opacity = 0; // completely hide it
+        delete userData.highlightConfigOfModel;
+        delete userData.faceIndex;
       } else if (userData.originalMaterial) {
         if (this.selectedObject.material) {
           // manually dispose it according to https://threejs.org/docs/#manual/en/introduction/How-to-dispose-of-objects
@@ -1281,12 +1305,12 @@ export default class Viewer3D {
     if (!this.scene || !object) {
       return;
     }
-    if (object instanceof THREE.InstancedMesh && instanceId != null) {
+    if (object instanceof THREE.InstancedMesh && instanceIdOrFaceIndexId != null) {
       const im = object as THREE.InstancedMesh;
       const originalMatrix = new THREE.Matrix4();
       const hideMatrix = new THREE.Matrix4();
       hideMatrix.set(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); // this matrix hides an object
-      im.getMatrixAt(instanceId, originalMatrix);
+      im.getMatrixAt(instanceIdOrFaceIndexId, originalMatrix);
       this.selectedObject = object;
       if (this.outlinePass) {
         this.outlinePass.selectedObjects = [object];
@@ -1306,13 +1330,44 @@ export default class Viewer3D {
         // hide the original mesh by its matrix
         const matrix = originalMatrix.clone();
         matrix.multiplyMatrices(originalMatrix, hideMatrix);
-        im.setMatrixAt(instanceId, matrix);
+        im.setMatrixAt(instanceIdOrFaceIndexId, matrix);
         im.instanceMatrix.needsUpdate = true;
         im.updateMatrix(); // need to call it since object.matrixAutoUpdate is false
-        this.selectedObject.userData.instanceId = instanceId; // store some instanceId so highlight can be reverted
+        this.selectedObject.userData.instanceId = instanceIdOrFaceIndexId; // store some instanceId so highlight can be reverted
         this.selectedObject.userData.originalMatrix = originalMatrix;
         this.selectedObject.userData.clonedMesh = clonedMesh;
         this.scene.add(clonedMesh); // add it to scene temporaly
+      }
+    } else if ((object as IFCModel).ifcManager && instanceIdOrFaceIndexId != null) {
+      const ifcObj = object as IFCModel;
+      const ifcManager = this.ifcLoader?.ifcManager;
+      const faceIndex = instanceIdOrFaceIndexId;
+      if (faceIndex >= 0 && ifcManager) {
+        const geometry = ifcObj.geometry;
+        const id = ifcManager.getExpressId(geometry, faceIndex);
+        const scene = this.scene;
+        if (id && scene) {
+          const modelID = ifcObj.modelID;
+          const cfg: HighlightConfigOfModel = {
+            modelID,
+            ids: [id],
+            scene,
+            removePrevious: true,
+            material: this.ifcHighlightMaterial
+          };
+          const subset = ifcManager.createSubset(cfg) as THREE.Object3D;
+          if (subset) {
+            // save HighlightConfigOfModel to userData, so it can be removed when unselect
+            subset.userData.highlightConfigOfModel = cfg;
+            subset.userData.faceIndex = faceIndex;
+            this.ifcHighlightMaterial.opacity = 0.3; // make highlight material visible
+            const props = ifcManager.getItemProperties(modelID, id, true);
+            console.log("Properties", props);
+            this.selectedObject = subset;
+          } else {
+            console.warn(`[Viewer3D] Failed to createSubset for ifc modelID: ${modelID}, id: ${id}`);
+          }
+        }
       }
     } else {
       // save the original material, so we can reverit it back when deselect
