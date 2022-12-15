@@ -61,17 +61,9 @@ You can add your own projects or models by editing [projects.json](public/config
     "id": "my_project",
     "name": "my project",
     "thumbnail": "projects/my_project/thumbnail.png",
-    "camera": {
-      "eye": [20, 10, 20],
-      "look": [0, 1, 0]
-    },
     "models": [{
-      "name": "my_project",
+      "name": "my model",
       "src": "projects/my_project/my_model.gltf",
-      "position": [0, 0, 0],
-      "rotation": [-90, 0, 0],
-      "scale": [1, 1, 1],
-      "instantiate": false,
       "merge": false,
       "edges": true
     }]
