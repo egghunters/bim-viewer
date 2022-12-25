@@ -66,5 +66,19 @@
       "merge": false,
       "edges": false
     }]
+  }, {
+    "id": "Luxury_building",
+    "name": "Luxury building (DAE)",
+    "thumbnail": "projects/Luxury_building/thumbnail.png",
+    "models": [{
+      "name": "Luxury_building",
+      "src": "projects/Luxury_building/Luxury_building.dae",
+      "position": [0, 0, 0],
+      "rotation": [-90, 0, 0],
+      "scale": [0.01, 0.01, 0.01],
+      "instantiate": false,
+      "merge": false,
+      "edges": false
+    }]
   }
 ]
