@@ -43,6 +43,7 @@ import Stats from "three/examples/jsm/libs/stats.module";
 import SkyboxUtils from "./utils/SkyboxUtils";
 import store from "../store/index";
 import Viewer3DUtils, { Views } from "./utils/Viewer3DUtils";
+import { PmremUtils } from "./utils/PmremUtils";
 // eslint-disable-next-line
 const TWEEN = require('tween')
 
@@ -146,8 +147,6 @@ export default class Viewer3D {
     this.renderer.outputEncoding = THREE.sRGBEncoding;
     this.renderer.toneMappingExposure = 1;
     this.renderer.physicallyCorrectLights = true;
-    // const pmremGenerator = new THREE.PMREMGenerator(this.renderer)
-    // pmremGenerator.compileEquirectangularShader()
     this.renderer.setClearColor(0xa9a9a9, 1);
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -157,6 +156,14 @@ export default class Viewer3D {
     this.css2dRenderer.setSize(this.width, this.height);
 
     this.stats = Stats();
+
+    const pmremGenerator = new THREE.PMREMGenerator(this.renderer);
+    pmremGenerator.compileEquirectangularShader();
+    PmremUtils.createEnvTextureFromDataArray(pmremGenerator).then((texture) => {
+      if (this.scene) {
+        this.scene.environment = texture;
+      }
+    });
   }
 
   private initCamera() {
