@@ -1,7 +1,7 @@
 # bim viewer
 BIM Viewer is a WebGL based front-end project that I created in my spare time. It is aimed to display BIM (Building Information Modeling) models, it supports gltf, obj, fbx, ifc, dae, etc. Since it is build on top of three.js, you can easily extend it to support any format that three.js support.
 
-This project is not mature yet, it's more like a demostration. There are many TODOs as you can see below. It is unfortunate that I could not continue work on it, that's why I make it open source, and I hope it could benifit others who is in BIM/AEC field.
+This project is not mature yet, it's more like a demostration. There are many TODOs as you can see below. It is unfortunate that I could not continue work on it, that's why I make it open source, and I hope it could benifit others who are in BIM/AEC industries.
 
 ## Project setup
 ```
@@ -85,4 +85,4 @@ There are so many features to be implemented, many bugs to be fixed, as well as 
 - ...
 
 ## `three.js`
-- [three.js release](https://github.com/mrdoob/three.js/releases): `v0.146.0`
+- [three.js release](https://github.com/mrdoob/three.js/releases): `v0.148.0`
