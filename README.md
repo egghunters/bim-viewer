@@ -85,4 +85,4 @@ There are so many features to be implemented, many bugs to be fixed, as well as 
 - ...
 
 ## `three.js`
-- [three.js release](https://github.com/mrdoob/three.js/releases): `v0.148.0`
+- [three.js release](https://github.com/mrdoob/three.js/releases): `v0.152.0`
