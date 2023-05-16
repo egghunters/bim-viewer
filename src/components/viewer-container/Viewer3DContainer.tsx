@@ -85,7 +85,7 @@ export default class Viewer3DContainer extends Vue {
   }
 
   initStats(viewer: Viewer3D) {
-    const stats = viewer.stats;
+    const stats = viewer.stats as any;
     if (stats) {
       stats.setMode(0); // 0: fps, 1: ms
       const statsOutput = (this.$refs.statsOutput) as HTMLDivElement;
