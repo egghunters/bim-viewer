@@ -110,7 +110,7 @@ export default class GeometryUtils {
   }
 
   /**
-   * Converts InterleavedBufferAttribute to BufferAttribute, because mergeBufferGeometries doesn't support InterleavedBufferAttribute.
+   * Converts InterleavedBufferAttribute to BufferAttribute, because mergeGeometries doesn't support InterleavedBufferAttribute.
    * If it is supported by Three.js one day, we should remove this method.
    */
   public static tryConvertInterleavedBufferAttributes(geometry: THREE.BufferGeometry) {

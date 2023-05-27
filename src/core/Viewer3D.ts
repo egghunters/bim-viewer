@@ -4,7 +4,7 @@ import { Collada, ColladaLoader } from "three/examples/jsm/loaders/ColladaLoader
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { HighlightConfigOfModel, IFCLoader, IFCModel } from "three/examples/jsm/loaders/IFCLoader";
+// import { HighlightConfigOfModel, IFCModel } from "three/examples/jsm/loaders/IFCLoader";
 import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader";
 import { PLYLoader } from "three/examples/jsm/loaders/PLYLoader";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
@@ -46,6 +46,7 @@ import Viewer3DUtils, { Views } from "./utils/Viewer3DUtils";
 import { PmremUtils } from "./utils/PmremUtils";
 // eslint-disable-next-line
 const TWEEN = require('tween')
+const IFC = require("../../public/three/js/libs/ifc/IFCLoader.js");
 
 const decoderPath = "three/js/libs/draco/gltf/";
 export default class Viewer3D {
@@ -91,7 +92,7 @@ export default class Viewer3D {
   private measure?: Measure;
   private datGui?: DatGuiHelper;
   private gltfLoader?: GLTFLoader;
-  private ifcLoader?: IFCLoader;
+  private ifcLoader?: any; // IFCLoader;
   private webcam?: WebCam;
   private webcamPlane?: THREE.Mesh;
   // RafHelper (requestAnimationFrame Helper) is used to improve render performance,
@@ -144,9 +145,11 @@ export default class Viewer3D {
     this.renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
     this.renderer.setPixelRatio(window.devicePixelRatio);
     this.renderer.setSize(this.width, this.height);
-    this.renderer.outputEncoding = THREE.sRGBEncoding;
+    // this.renderer.outputEncoding = THREE.sRGBEncoding;
+    this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.renderer.toneMappingExposure = 1;
-    this.renderer.physicallyCorrectLights = true;
+    // this.renderer.physicallyCorrectLights = true;
+    this.renderer.useLegacyLights = false;
     this.renderer.setClearColor(0xa9a9a9, 1);
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -155,7 +158,7 @@ export default class Viewer3D {
     this.css2dRenderer = new CSS2DRenderer();
     this.css2dRenderer.setSize(this.width, this.height);
 
-    this.stats = Stats();
+    this.stats = new Stats();
 
     const pmremGenerator = new THREE.PMREMGenerator(this.renderer);
     pmremGenerator.compileEquirectangularShader();
@@ -814,7 +817,7 @@ export default class Viewer3D {
       throw new Error("Failed to load!");
     }
     if (!this.ifcLoader) {
-      this.ifcLoader = new IFCLoader();
+      this.ifcLoader = new IFC.IFCLoader();
       /**
        * web-ifc.wasm
        * wasm is required in order to load ifc file, we'll need to copy:
@@ -835,7 +838,7 @@ export default class Viewer3D {
         resolve(ifcModel.mesh);
       },
       onProgress,
-      (event) => {
+      (event: any) => {
         onError && onError(event);
         reject(event);
       });
@@ -1216,7 +1219,7 @@ export default class Viewer3D {
           object = undefined;
         }
       // donna know why I cannot use "instanceof IFCModel" here
-      } else if ((object as IFCModel).ifcManager) {
+      } else if ((object as any).ifcManager) {
         // const ifcObj = object as IFCModel;
         const faceIndex = (firstIntersect && firstIntersect.faceIndex) || -1;
         instanceId = faceIndex; // for IFCModel, instanceId means faceIndex!!
@@ -1345,8 +1348,8 @@ export default class Viewer3D {
         this.selectedObject.userData.clonedMesh = clonedMesh;
         this.scene.add(clonedMesh); // add it to scene temporaly
       }
-    } else if ((object as IFCModel).ifcManager && instanceIdOrFaceIndexId != null) {
-      const ifcObj = object as IFCModel;
+    } else if ((object as any).ifcManager && instanceIdOrFaceIndexId != null) {
+      const ifcObj = object as any; // IFCModel;
       const ifcManager = this.ifcLoader?.ifcManager;
       const faceIndex = instanceIdOrFaceIndexId;
       if (faceIndex >= 0 && ifcManager) {
@@ -1355,7 +1358,8 @@ export default class Viewer3D {
         const scene = this.scene;
         if (id && scene) {
           const modelID = ifcObj.modelID;
-          const cfg: HighlightConfigOfModel = {
+          // HighlightConfigOfModel
+          const cfg = {
             modelID,
             ids: [id],
             scene,
